@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='mystyle.css')}}" />
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <style>
+        html {
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: url(https://www.img.in.th/images/0b1ddd016f9df05f616278c0d498679d.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        label {
+            display: block;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'db_helvethaica_x77_bdcond', 'Kanit', sans-serif;
+            font-size: 18px;
+
+        }
+
+        .center-div1 {
+            margin: 0 auto;
+            max-width: 300px;
+            height: 50px;
+            background-color: #584944;
+            border-radius: 100px;
+            display: flex;
+            justify-content: center;
+
+            -webkit-box-shadow: 3px 4px 24px 0px rgba(0, 0, 0, 0.45);
+            -moz-box-shadow: 3px 4px 24px 0px rgba(0, 0, 0, 0.45);
+            box-shadow: 3px 4px 24px 0px rgba(0, 0, 0, 0.45);
+            margin-bottom: 20px;
+        }
+
+        .center-div2 {
+            margin: 0 auto;
+            margin-bottom: 20%;
+            max-width: 300px;
+            height: 50px;
+            background-color: #3F3536;
+            border-radius: 100px;
+            display: flex;
+            justify-content: center;
+
+            -webkit-box-shadow: 3px 4px 24px 0px rgba(0, 0, 0, 0.45);
+            -moz-box-shadow: 3px 4px 24px 0px rgba(0, 0, 0, 0.45);
+            box-shadow: 3px 4px 24px 0px rgba(0, 0, 0, 0.45);
+
+        }
+
+        i {
+            font-size: 22px;
+            color: white;
+            padding-right: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            flex-grow: 1;
+            font-family: 'harlow_solid_italicitalic', sans-serif;
+            font-size: 55px;
+            color: #555555;
+        }
+
+        .w-100 {
+            width: 100%;
+        }
+    </style>
+
+</head>
+<h1>
+    Visibility
+
+</h1>
+
+<body>
+    <div class='w-100'>
+        <form action="/uploadpic1" method="post" enctype="multipart/form-data">
+            <div class="center-div1">
+                <label id="files"><i class="material-icons">camera_alt</i>
+                    กล้อง <input type="file" id="file1" name="img1"
+                        style="visibility: hidden; position: absolute;" accept="image/*" capture="camera"
+                        onchange="form.submit()" /></label>
+            </div>
+        </form>
+    </div>
+    <div class='w-100'>
+        <form action="/uploadpic2" method="post" enctype="multipart/form-data">
+            <div class="center-div2">
+                <label id="files"><i class="material-icons">collections</i>
+                    เปิดจากอุปกรณ์ <input type="file" id="file2" name="img2"
+                        style="visibility: hidden; position: absolute;" accept="image/*"
+                        onchange="form.submit()" /></label>
+            </div>
+        </form>
+    </div>
+
+
+
+</body>
+
+</html>
