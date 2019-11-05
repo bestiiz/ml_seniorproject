@@ -8,7 +8,7 @@ import base64
 import cv2
 
 UPLOAD_FOLDER = 'image'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['jpg', 'jpeg'])
 
 
 def allowed_file(filename):
@@ -78,6 +78,7 @@ def upload_file1():
 @app.route('/uploadpic2',methods=['GET', 'POST'])
 def upload_file2():
     if request.method == 'POST':
+
         # check if the post request has the file part
         if 'img2' not in request.files:
             flash('No file part')
@@ -89,11 +90,43 @@ def upload_file2():
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
+
         if file and allowed_file(file.filename):
-            filename = secure_filename(str(datetime.now()) + ".jpeg")
+
+           filename = secure_filename(str(datetime.now()) + ".jpeg")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('showResult'))
-    
+            # ..........................................................
+            image = cv2.imread(app.config['UPLOAD_FOLDER'] + '/' + filename)
+            _, img_encoded = cv2.imencode(".jpg", image)
+            predictions = get_predictions(img_encoded)
+
+            # annotate the image
+            for pred in predictions:
+                # print prediction
+                print(pred)
+
+                # extract the bounding box coordinates
+                (x, y) = (pred["boxes"][0], pred["boxes"][1])
+                (w, h) = (pred["boxes"][2], pred["boxes"][3])
+
+                # draw a bounding box rectangle and label on the image
+                cv2.rectangle(image, (x, y), (x + w, y + h), pred["color"], 2)
+                text = "{}: {:.4f}".format(pred["label"], pred["confidence"])
+                cv2.putText(
+                    image, 
+                    text, 
+                    (x, y - 5), 
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.5, 
+                    pred["color"], 
+                    2
+                )
+
+            # save annotated image
+            cv2.imwrite("static/img/" + filename, image)
+            
+            return redirect(url_for('showResult', file=filename))  
+
 @app.route('/result', methods=['GET', 'POST'])
 def showResult():
     return render_template('result.html', filename=request.args.get('file'))

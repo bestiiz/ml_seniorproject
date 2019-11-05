@@ -1,21 +1,37 @@
+<!DOCTYPE html>
 <html>
 
 <head>
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='mystyle.css')}}" />
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
     <style>
+
         h1 {
-            font-size: 100;
             text-align: center;
-            margin-top: 20px;
-            -webkit-box-shadow: 3px 4px 24px 0px rgba(0, 0, 0, 0.45);
-            -moz-box-shadow: 3px 4px 24px 0px rgba(0, 0, 0, 0.45);
-            box-shadow: 3px 4px 24px 0px rgba(0, 0, 0, 0.45);
+            font-size: 20px;
+            font-family: 'db_helvethaica_x77_bdcond', 'Kanit', sans-serif;
+            color: white;
+        }
+
+        .header {
+            overflow: hidden;
+            background-color: #3F3536;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
     </style>
 </head>
 
-
 <body>
-    <h1>Result Image</h1>
+    <div class="header">
+        <h1>ผลลัพธ์ที่ได้</h1>
+    </div>
+
     <img src="{{url_for('static', filename='img/' + filename)}}" />
 </body>
 
