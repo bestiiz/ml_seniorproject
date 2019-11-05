@@ -93,7 +93,7 @@ def upload_file2():
 
         if file and allowed_file(file.filename):
 
-           filename = secure_filename(str(datetime.now()) + ".jpeg")
+            filename = secure_filename(str(datetime.now()) + ".jpeg")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # ..........................................................
             image = cv2.imread(app.config['UPLOAD_FOLDER'] + '/' + filename)
