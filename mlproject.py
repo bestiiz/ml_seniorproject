@@ -40,6 +40,7 @@ def upload_file1():
         if file and allowed_file(file.filename):
             filename = secure_filename(str(datetime.now()) + ".jpeg")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            flash('Success')
             # ..........................................................
             image = cv2.imread(app.config['UPLOAD_FOLDER'] + '/' + filename)
             _, img_encoded = cv2.imencode(".jpg", image)
