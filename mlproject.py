@@ -1,6 +1,6 @@
 import os
 import time
-from flask import Flask, render_template, url_for, redirect, request, jsonify, flash
+from flask import Flask, render_template, url_for, redirect, request, jsonify, flask
 from werkzeug.utils import secure_filename
 from datetime import datetime
 from yolo import get_predictions
