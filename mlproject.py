@@ -70,6 +70,12 @@ def upload_file1():
             # save annotated image
             cv2.imwrite("static/img/" + filename, image)
             return redirect(url_for('showResult', file=filename))
+        else:
+            flash("That file extension is not allowed")
+            return redirect(request.url)
+
+    return render_template('index.html')
+
        
 @app.route('/uploadpic2',methods=['GET', 'POST'])
 def upload_file2():
@@ -119,7 +125,12 @@ def upload_file2():
 
             # save annotated image
             cv2.imwrite("static/img/" + filename, image)
-            return redirect(url_for('showResult', file=filename)) 
+            return redirect(url_for('showResult', file=filename)) @app.route("/upload-image", methods=["GET", "POST"])
+        else:
+            print("That file extension is not allowed")
+            return redirect(request.url)
+
+    return render_template('index.html')
 
 @app.route('/result', methods=['GET', 'POST'])
 def showResult():
