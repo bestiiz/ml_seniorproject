@@ -21,7 +21,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def showData():
-        flash('Hello my app')
         return render_template('index.html')
 
 @app.route('/uploadpic1',methods=['GET', 'POST'])
