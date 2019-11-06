@@ -92,7 +92,7 @@ def upload_file2():
         if file.filename == '':
             flash('No selected file')
             return redirect(url_for('showData'))
-
+            
         if file and allowed_file(file.filename):
             filename = secure_filename(str(datetime.now()) + ".jpeg")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -122,10 +122,9 @@ def upload_file2():
                     pred["color"], 
                     2
                 )
-
             # save annotated image
             cv2.imwrite("static/img/" + filename, image)
-            return redirect(url_for('showResult', file=filename)) @app.route("/upload-image", methods=["GET", "POST"])
+            return redirect(url_for('showResult', file=filename))
         else:
             flash("file extension is not allowed")
             return redirect(url_for('showData'))
