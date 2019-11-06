@@ -92,8 +92,8 @@
         .w-100 {
             width: 100%;
         }
-        .bs-example{
-    	margin: 0;
+        .alert {
+    	    margin: 0;
         }   
     </style>
 
@@ -103,7 +103,7 @@
 	  {% if messages %}
 	    {% for message in messages %}
         <div class="alert alert-danger alert-dismissible fade show">
-            <strong>Warning!</strong>{{message}}
+            <strong>Warning! </strong>{{message}}
             <button type="button" class="close" data-dismiss="alert">&times;</button>
 	    </div>
 		{% endfor %}

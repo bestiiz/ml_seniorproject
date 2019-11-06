@@ -37,10 +37,10 @@ def upload_file1():
         if file.filename == '':
             flash('No selected file')
             return redirect(url_for('showData'))
+            
         if file and allowed_file(file.filename):
             filename = secure_filename(str(datetime.now()) + ".jpeg")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            flash('Success')
             # ..........................................................
             image = cv2.imread(app.config['UPLOAD_FOLDER'] + '/' + filename)
             _, img_encoded = cv2.imencode(".jpg", image)
@@ -71,7 +71,7 @@ def upload_file1():
             cv2.imwrite("static/img/" + filename, image)
             return redirect(url_for('showResult', file=filename))
         else:
-            flash("That file extension is not allowed")
+            flash("file extension is not allowed")
             return redirect(url_for('showData'))
 
     return render_template('index.html')
@@ -127,8 +127,8 @@ def upload_file2():
             cv2.imwrite("static/img/" + filename, image)
             return redirect(url_for('showResult', file=filename)) @app.route("/upload-image", methods=["GET", "POST"])
         else:
-            print("That file extension is not allowed")
-            return redirect(request.url)
+            flash("file extension is not allowed")
+            return redirect(url_for('showData'))
 
     return render_template('index.html')
 
