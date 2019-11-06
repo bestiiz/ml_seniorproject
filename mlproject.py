@@ -1,6 +1,6 @@
 import os
 import time
-from flask import Flask, render_template, url_for, redirect, request, jsonify
+from flask import Flask, render_template, url_for, redirect, request, jsonify,flash
 from werkzeug.utils import secure_filename
 from datetime import datetime
 from yolo import get_predictions
@@ -20,6 +20,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def showData():
+        flash('Hello my app')
         return render_template('index.html')
 
 @app.route('/uploadpic1',methods=['GET', 'POST'])
