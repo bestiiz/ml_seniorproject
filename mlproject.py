@@ -72,7 +72,7 @@ def upload_file1():
             return redirect(url_for('showResult', file=filename))
         else:
             flash("That file extension is not allowed")
-            return redirect(request.url)
+            return redirect(url_for('showData'))
 
     return render_template('index.html')
 
