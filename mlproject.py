@@ -1,6 +1,6 @@
 import os
 import time
-from flask import Flask, render_template, url_for, redirect, request, jsonify
+from flask import Flask, render_template, url_for, redirect, request, jsonify, flash
 from werkzeug.utils import secure_filename
 from datetime import datetime
 from yolo import get_predictions
@@ -39,7 +39,6 @@ def upload_file1():
             return redirect(request.url)
 
         if file and allowed_file(file.filename):
-
             filename = secure_filename(str(datetime.now()) + ".jpeg")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # ..........................................................
@@ -74,7 +73,7 @@ def upload_file1():
             # 
             return redirect(url_for('showResult', file=filename))
             # return render_template('result.html', filename=filename)
-        
+            
         else:
 			flash('Allowed file types are jpg or jpeg')
 			return redirect(request.url)
@@ -96,7 +95,6 @@ def upload_file2():
             return redirect(request.url)
 
         if file and allowed_file(file.filename):
-
             filename = secure_filename(str(datetime.now()) + ".jpeg")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # ..........................................................
