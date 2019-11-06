@@ -25,7 +25,6 @@ def showData():
 @app.route('/uploadpic1',methods=['GET', 'POST'])
 def upload_file1():
     if request.method == 'POST':
-
         # check if the post request has the file part
         if 'img1' not in request.files:
             flash('No file part')
@@ -37,7 +36,6 @@ def upload_file1():
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
-
         if file and allowed_file(file.filename):
             filename = secure_filename(str(datetime.now()) + ".jpeg")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -67,17 +65,10 @@ def upload_file1():
                     pred["color"], 
                     2
                 )
-
             # save annotated image
             cv2.imwrite("static/img/" + filename, image)
-            # 
             return redirect(url_for('showResult', file=filename))
-            # return render_template('result.html', filename=filename)
-            
-        else:
-			flash('Allowed file types are jpg or jpeg')
-			return redirect(request.url)
-
+       
 @app.route('/uploadpic2',methods=['GET', 'POST'])
 def upload_file2():
     if request.method == 'POST':
@@ -127,11 +118,6 @@ def upload_file2():
             # save annotated image
             cv2.imwrite("static/img/" + filename, image)
             return redirect(url_for('showResult', file=filename)) 
-
-        else:
-			flash('Allowed file types are jpg or jpeg')
-			return redirect(request.url)
-        
 
 @app.route('/result', methods=['GET', 'POST'])
 def showResult():
