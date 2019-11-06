@@ -74,6 +74,10 @@ def upload_file1():
             # 
             return redirect(url_for('showResult', file=filename))
             # return render_template('result.html', filename=filename)
+        
+        else:
+			flash('Allowed file types are jpg or jpeg')
+			return redirect(request.url)
 
 @app.route('/uploadpic2',methods=['GET', 'POST'])
 def upload_file2():
@@ -124,8 +128,12 @@ def upload_file2():
 
             # save annotated image
             cv2.imwrite("static/img/" + filename, image)
-            
-            return redirect(url_for('showResult', file=filename))  
+            return redirect(url_for('showResult', file=filename)) 
+
+        else:
+			flash('Allowed file types are jpg or jpeg')
+			return redirect(request.url)
+        
 
 @app.route('/result', methods=['GET', 'POST'])
 def showResult():
